@@ -19,43 +19,70 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class CalculatorTests {
 
-	@Test
+	/*@Test
 	@DisplayName("1 + 1 = 2")
 	void addsTwoNumbers() {
 		Calculator calculator = new Calculator();
 		assertEquals (2, calculator.add(1, 1), "1 + 1 should equal 2");
-	}
-	@Test
-	@DisplayName("1 - 1 = 0")
-	void subTwoNumbers(){
-		Calculator calculator = new Calculator();
-		assertEquals(0,calculator.sub(1,1), "1 - 1 deverá ser igual a 0");
-	}
-	@Test
-	@DisplayName("1 * 1 = 1")
-	void multTwoNumbers(){
-		Calculator calculator = new Calculator();
-		assertEquals(1,calculator.mult(1,1),"1 * 1 deverá ser igual a 1");
-	}
-	@Test
-	@DisplayName("1 * 1 = 1")
-	void divTwoNumbers(){
-		Calculator calculator = new Calculator();
-		assertEquals(1,calculator.div(2,2),"2 / 2 deverá ser igual a 1");
-	}
+	}*/
 	
-
-	/*@ParameterizedTest(name = "{0} + {1} = {2}")
+	@ParameterizedTest(name = "{0} + {1} = {2}")
 	@CsvSource({
 			"0,    1,   1",
-			"1,    2,   3",
-			"49,  51, 100",
-			"1,  100, 101"
+			"1.5,    2,   3.5",
+			"49,  51, 0",
+			"'a',  'a', 1",
+			"0,  0, 0",
+			"100, -101, -1"
 	})
-	void add(int first, int second, int expectedResult) {
+	void add(double first, double second, double expectedResult) {
 		Calculator calculator = new Calculator();
 		assertEquals(expectedResult, calculator.add(first, second),
 				() -> first + " + " + second + " should equal " + expectedResult);
-	}*/
+	}
 	
+	@ParameterizedTest(name = "{0} * {1} = {2}")
+	@CsvSource({
+			"0,    1,   0",
+			"1.5,    2,   3",
+			"2,  2, 4",
+			"3,  -5, -15",
+			"2.5,  3, 7.5",
+			"'a', 1, 1"
+	})
+	void mult(double first, double second, double expectedResult) {
+		Calculator calculator = new Calculator();
+		assertEquals(expectedResult, calculator.mult(first, second),
+				() -> first + " * " + second + " should equal " + expectedResult);
+	}
+	
+	@ParameterizedTest(name = "{0} - {1} = {2}")
+	@CsvSource({
+			"0,    1,   -1",
+			"2.5,    1,   1.5",
+			"2,  2, 0",
+			"15,  10, 5",
+			"1,  1, 0",
+			"'a', 1, 1"
+	})
+	void sub(double first, double second, double expectedResult) {
+		Calculator calculator = new Calculator();
+		assertEquals(expectedResult, calculator.sub(first, second),
+				() -> first + " - " + second + " should equal " + expectedResult);
+	}
+	
+	@ParameterizedTest(name = "{0} / {1} = {2}")
+	@CsvSource({
+			"-8,    1,   -8",
+			"5,    2.5,   2",
+			"4,  4, 1",
+			"7,  2, 3.5",
+			"1,  1, 1",
+			"'a', 1, 1"
+	})
+	void div(double first, double second, double expectedResult) {
+		Calculator calculator = new Calculator();
+		assertEquals(expectedResult, calculator.div(first, second),
+				() -> first + " / " + second + " should equal " + expectedResult);
+	}
 }
